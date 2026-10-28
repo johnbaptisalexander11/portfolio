@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Johnbaptis Alexander</title>
+
+<meta name="description" content="Software engineering student building full-stack web apps, REST APIs and mobile apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a portfolio read like API documentation — each project is an "endpoint" row, badges encode the platform it runs on. */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --fg:#17201d; --muted:#5b6762; --line:#d9dfdc;
+  --accent:#0f6b5c; --accent-soft:#e1efeb;
+  --web:#1f5fbf; --api:#0f6b5c; --mobile:#b4531a; --core:#6b5a1f;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1513; --surface:#161e1b; --fg:#e6ece9; --muted:#9aa8a2; --line:#28332f;
+  --accent:#5cc4ae; --accent-soft:#183029;
+  --web:#7fb0f5; --api:#5cc4ae; --mobile:#f0a06b; --core:#d8c27a; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f1513; --surface:#161e1b; --fg:#e6ece9; --muted:#9aa8a2; --line:#28332f;
+  --accent:#5cc4ae; --accent-soft:#183029;
+  --web:#7fb0f5; --api:#5cc4ae; --mobile:#f0a06b; --core:#d8c27a; color-scheme:dark }
+
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:880px;margin:0 auto;padding-block:48px 64px;display:grid;gap:56px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* hero */
+header{display:grid;gap:20px}
+.route{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.route b{color:var(--accent);font-weight:500}
+h1{font-size:clamp(40px,8vw,72px);font-weight:700;letter-spacing:-.02em}
+.lede{font-size:clamp(17px,2.2vw,20px);max-width:60ch;margin:0;color:var(--fg)}
+.lede span{color:var(--muted)}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;
+  background:var(--accent-soft);color:var(--accent);padding:6px 12px;border-radius:999px;width:fit-content}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 14px var(--body);padding:10px 16px;border-radius:8px;
+  border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+
+section{display:grid;gap:20px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:10px;flex-wrap:wrap}
+h2{font-size:28px;font-weight:700}
+
+/* projects as endpoints */
+.endpoints{display:grid;gap:12px}
+.ep{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:12px;min-width:0}
+.ep-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.badge{font:500 11px var(--mono);letter-spacing:.06em;padding:3px 8px;border-radius:4px;border:1px solid currentColor;min-width:64px;text-align:center}
+.b-web{color:var(--web)} .b-api{color:var(--api)} .b-mobile{color:var(--mobile)} .b-core{color:var(--core)}
+.ep h3{font-size:20px;font-weight:700}
+.ep .path{font-family:var(--mono);font-size:13px;color:var(--muted);margin-left:auto}
+.ep p{margin:0;max-width:65ch}
+.ep ul{margin:0;padding-left:20px;display:grid;gap:4px;color:var(--fg)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:400 12px var(--mono);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:4px;color:var(--muted)}
+.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.more div{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.skills div{display:grid;gap:8px;align-content:start}
+
+/* education */
+.timeline{display:grid;gap:0}
+.edu{display:grid;grid-template-columns:140px 1fr;gap:16px;padding-block:14px;border-bottom:1px solid var(--line)}
+.edu:last-child{border-bottom:0}
+.edu .when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.edu strong{display:block;font-weight:600}
+.edu span{color:var(--muted);font-size:15px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.row .v{font-family:var(--mono);font-size:14px;overflow-wrap:anywhere;user-select:all}
+.copy{font:500 12px var(--mono);border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:6px;padding:6px 10px;cursor:pointer;flex-shrink:0}
+footer{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+@media (max-width:560px){
+  .edu{grid-template-columns:1fr;gap:4px}
+  .ep .path{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion:no-preference){ .btn,.copy{transition:border-color .15s} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="route"><b>GET</b> /developers/johnbaptis-alexander &nbsp;→ 200 OK</div>
+    <h1>Johnbaptis Alexander</h1>
+    <p class="lede">Software engineering student who builds full-stack web apps, REST APIs and mobile apps. <span>MERN stack, ASP.NET Core, Android. Based in Kilinochchi, Sri Lanka.</span></p>
+    <div class="status">Open to software engineering internships</div>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/johnbaptisalexander11" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/alexander-software" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <section aria-labelledby="proj">
+    <div class="sec-head"><h2 id="proj">Projects</h2><span class="label">Badge = where it runs</span></div>
+    <div class="endpoints">
+      <article class="ep">
+        <div class="ep-top"><span class="badge b-web">WEB</span><h3>Smart Campus System</h3><span class="path">/projects/smart-campus</span></div>
+        <p>A web platform for campus life, built as an individual project from database to interface.</p>
+        <ul>
+          <li>Authentication, role-based access control and protected routes for students and staff</li>
+          <li>Food ordering and group study modules</li>
+          <li>Testing, debugging and system documentation</li>
+        </ul>
+        <div class="tags"><span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MongoDB</span><span class="tag">REST API</span></div>
+        <a class="btn" style="width:fit-content" href="https://github.com/johnbaptisalexander11/Smartcampus" target="_blank" rel="noopener">View code on GitHub</a>
+      </article>
+
+      <article class="ep">
+        <div class="ep-top"><span class="badge b-api">API</span><h3>Kandy Municipal Council API Platform</h3><span class="path">/projects/kmc-api</span></div>
+        <p>A RESTful API platform for municipal services, documented and tested in Swagger.</p>
+        <ul>
+          <li>RESTful endpoints with authentication</li>
+          <li>Database operations through Entity Framework on SQLite</li>
+          <li>API testing and documentation with Swagger</li>
+        </ul>
+        <div class="tags"><span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">Entity Framework</span><span class="tag">SQLite</span><span class="tag">Swagger</span></div>
+      </article>
+
+      <article class="ep">
+        <div class="ep-top"><span class="badge b-mobile">MOBILE</span><h3>Pet Care Mobile Application</h3><span class="path">/projects/pet-care</span></div>
+        <p>An Android app for pet-care tasks, with user-focused features and cloud data management.</p>
+        <div class="tags"><span class="tag">Android Studio</span><span class="tag">Firebase</span></div>
+      </article>
+    </div>
+
+    <div class="label" style="margin-top:8px">Other academic projects</div>
+    <div class="more">
+      <div><span class="badge b-web">WEB</span>Cake Shop Management System</div>
+      <div><span class="badge b-web">WEB</span>Travel Website</div>
+      <div><span class="badge b-core">JAVA</span>Sweet Cupcake Shop</div>
+      <div><span class="badge b-core">C++</span>GENIUS BOOKS Management</div>
+      <div><span class="badge b-core">DB</span>GreenTrack Database System</div>
+      <div><span class="badge b-core">DATA</span>Business Analytics Project</div>
+      <div><span class="badge b-core">NET</span>Packet Tracer Networking</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="skills">
+    <div class="sec-head"><h2 id="skills">Skills</h2></div>
+    <div class="skills">
+      <div><span class="label">Languages</span><div class="tags"><span class="tag">JavaScript</span><span class="tag">Java</span><span class="tag">C#</span><span class="tag">C++</span><span class="tag">PHP</span></div></div>
+      <div><span class="label">Web</span><div class="tags"><span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">ASP.NET Core</span><span class="tag">HTML5</span><span class="tag">CSS3</span></div></div>
+      <div><span class="label">Databases</span><div class="tags"><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Firebase</span><span class="tag">SQLite</span></div><span style="font-size:14px;color:var(--muted)">MySQL query optimisation, execution plans and performance tuning</span></div>
+      <div><span class="label">Tools &amp; practice</span><div class="tags"><span class="tag">Git &amp; GitHub</span><span class="tag">Swagger</span><span class="tag">Android Studio</span><span class="tag">VS Code</span><span class="tag">OOP</span><span class="tag">Agile</span><span class="tag">Auth &amp; RBAC</span></div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="edu">
+    <div class="sec-head"><h2 id="edu">Education</h2></div>
+    <div class="timeline">
+      <div class="edu"><div class="when">Registered</div><div><strong>BSc (Hons) Software Engineering (Top-Up)</strong><span>ICBT Campus, Colombo</span></div></div>
+      <div class="edu"><div class="when">Award Feb 2027</div><div><strong>Higher Diploma in Computing and Software Engineering</strong><span>ICBT Campus, Jaffna · all 4 semesters completed</span></div></div>
+      <div class="edu"><div class="when">2023</div><div><strong>Diploma in English</strong><span>British College, Kilinochchi</span></div></div>
+      <div class="edu"><div class="when">2022</div><div><strong>G.C.E. Advanced Level, Physical Science</strong><span>Kilinochchi Central College</span></div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="contact" id="contact">
+    <div class="sec-head"><h2 id="contact-h">Contact</h2><span class="label">Tamil · English</span></div>
+    <div class="contact">
+      <div class="row"><span class="v" id="email">johnbaptisalexander@gmail.com</span><button class="copy" type="button" data-copy="email">Copy</button></div>
+      <div class="row"><span class="v" id="phone">+94 77 177 6398</span><button class="copy" type="button" data-copy="phone">Copy</button></div>
+    </div>
+  </section>
+
+  <footer>Johnbaptis Alexander · Kilinochchi, Sri Lanka</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const el=document.getElementById(btn.dataset.copy);
+    const text=el.textContent;
+    const done=()=>{btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1500)};
+    const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected';setTimeout(()=>btn.textContent='Copy',1500)};
+    try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+  });
+});
+</script>
+</body>
+</html>
